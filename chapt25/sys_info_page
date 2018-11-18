@@ -3,7 +3,7 @@
 #program to output a system information page
 
 PROGNAME=$(basename $0)
-title="System Information Report For $HOSTNAME"
+TITLE="System Information Report For $HOSTNAME"
 CURRENT_TIME=$(date +"%x %r %Z")
 TIME_STAMP="Generated $CURRENT_TIME,by $USER"
 
@@ -59,10 +59,10 @@ write_html_page(){
 	cat <<- _EOF_
 	<HTML>
 			<HEAD>
-					<TITLE>$title</TITLE>
+					<TITLE>$TITLE</TITLE>
 			</HEAD>
 			<BODY>
-					<H1>$title</H1>
+					<H1>$TITLE</H1>
 					<P>$TIME_STAMP</P>
 					$(report_uptime)
 					$(report_disk_space)
@@ -81,16 +81,16 @@ filename=
 while [[ -n $1 ]]; do
 	case $1 in
 			-f | --file)		shift
-								filename=$1
-								;;
+						filename=$1
+						;;
 			-i | --interactive)	interactive=1
-								;;
+						;;
 			-h | --help)		usage
-								exit
-								;;
-			*)					usage >&2
-								exit 1
-								;;
+						exit
+						;;
+			*)			usage >&2
+						exit 1
+						;;
 	esac
 	shift
 done
